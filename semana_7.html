@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bootstrap</title>
+    <script type='text/javascript' src="Semana_7/bootstrap_5/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="Semana_7/bootstrap_5/css/bootstrap.min.css">
+     <script type="text/javascript">
+        function cargar() {
+          fetch('https://sga.unemi.edu.ec/api?a=apilistaarticulos&a=apilistaarticulos&ida=0')
+          .then(response => response.json())
+          .then(data => {
+            const table = document.getElementById('dataarticulos')
+
+            data.forEach(item => {
+              const row = document.createElement('tr');
+              row.innerHTML = `
+               <td>${item.apellidos}</td>
+               <td>${item.articulos}</td>
+               <td>${item.base}</td>
+               <td>${item.enlace}</td>
+               <td>${item.fecha}</td>
+               <td>${item.links}</td>
+               <td>${item.revista}</td>
+              `
+              table.appendChild(row);
+            })
+          });
+        }
+    </script>
+</head>
+<body>
+    <h1 class="text-center">Clase semana 7</h1>
+        <button type="button" class="btn btn-success m-2" onclick="cargar()">Cargar</button>
+        <div class="container">
+            <div class="table-responsive">
+                <table class="table table-bordered text-primary-emphasis bg-primary-subtle border border-primary-subtle">
+                    <thead>
+                    <tr>
+                        <th scope="col">Autor</th>
+                        <th scope="col">Articulo</th>
+                        <th scope="col">Base</th>
+                        <th scope="col">Enlace</th>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Link</th>
+                    </tr>
+                    </thead>
+                    <tbody id="dataarticulos"></tbody>
+                </table>
+            </div>
+        </div>
+</body>
+</html>
